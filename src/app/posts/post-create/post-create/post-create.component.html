@@ -1,0 +1,28 @@
+<mat-card style="width: 80%; margin: auto;">
+    <mat-spinner *ngIf="isLoading" style="margin: auto;"></mat-spinner>
+    <form [formGroup]="form" (ngSubmit)="onSavePost()" *ngIf="!isLoading">
+      <mat-form-field>
+        <mat-label>Enter your Title</mat-label>
+        <input formControlName="title" matInput type="text" name="title">
+        <mat-error *ngIf="form.get('title').invalid && (form.get('title').dirty || form.get('title').touched)">
+          Please enter a Post Title
+        </mat-error>
+      </mat-form-field>
+      <div>
+        <button mat-stroked-button type="button" (click)="filePicker.click()">Pick Image</button>
+        <input type="file" #filePicker style="visibility: hidden;" (change)="onImagePicked($event)">
+      </div>
+      <div class="image-preview" *ngIf="imagePreview !=='' && imagePreview && form.get('image').valid " style="height: 5rem; margin: 1rem 0;">
+        <img [src]="imagePreview" [alt]="form.value.title" style="max-height: 100%;">
+      </div>
+      <mat-form-field style="width: 100%;">
+        <mat-label>Enter your content</mat-label>
+        <textarea formControlName="content" style="width: 100%;" name="content" matInput rows="6"></textarea>
+        <mat-error *ngIf="form.get('content').invalid && (form.get('content').dirty || form.get('content').touched)">
+          Please enter Post Content
+        </mat-error>
+      </mat-form-field>
+      <button mat-raised-button color="accent" type="submit" [disabled]="!form.valid">Save Post</button>
+    </form>
+  </mat-card>
+  
