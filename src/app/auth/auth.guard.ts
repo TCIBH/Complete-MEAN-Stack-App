@@ -7,7 +7,7 @@ export class AuthGuard implements CanActivate{
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): MaybeAsync<GuardResult> {
       const isAuth=this.authService.getIsAuth();
       if(!isAuth){
-        this.router.navigate(["/login"]);
+        this.router.navigate(['/auth/login']);
       } 
       return isAuth;
      }

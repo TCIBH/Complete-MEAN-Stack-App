@@ -42,13 +42,15 @@ onDelete(postId:string){
   this.isLoading=true;
   this.postService.deletePost(postId).subscribe(()=>{
     this.postService.getPosts(this.postsPerPage,this.currentPage);
+  },()=>{
+    this.isLoading=false;
   })
 }
 onChangedPage(pageData:PageEvent){
 console.log(pageData);
 this.currentPage=pageData.pageIndex+1;
 this.postsPerPage=pageData.pageSize;
-this.postService.getPosts(this.postsPerPage,this.currentPage)
+this.postService.getPosts(this.postsPerPage,this.currentPage);
 }
  ngOnDestroy(): void {
   this.postSubscription.unsubscribe();
