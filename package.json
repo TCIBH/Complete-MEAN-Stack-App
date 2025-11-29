@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "startmd": "sudo -i mongod --fork --syslog > /var/log/syslog",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
